@@ -24,6 +24,14 @@ uint32_t Randomizer::randomizeFromKey(uint32_t key){
 	this->updateSeed(); //used to undo add()
 	return this->result;
 }
+
+uint32_t Randomizer::random() {
+	this->hash.add(nullptr, 4);
+	this->result = this->hash.hash();
+	this->updateSeed();
+	return this->result;
+}
+
 //int chance is the percentage chance of returning 1.
 bool Randomizer::randomizeFromChance(int chance, uint32_t key){
 	this->hash.add(&key, 4);
